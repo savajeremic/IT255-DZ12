@@ -1,0 +1,24 @@
+<form role="form" [formGroup]="registerForm">
+  <div class="alert alert-danger" style="display: none;"></div>
+  <div class="form-group">
+    <label for="ime">Ime:</label>
+    <input type="text" class="form-control" formControlName='ime'>
+  </div>
+  <div class="form-group">
+    <label for="prezime">Prezime:</label>
+    <input type="text" class="form-control" formControlName='prezime'>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" formControlName='email'>
+  </div>
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" class="form-control" formControlName='username'>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" formControlName='password'>
+  </div>
+  <button (click)="onRegister()" class="btn btn-default">Register</button>
+</form>

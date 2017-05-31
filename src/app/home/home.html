@@ -1,0 +1,25 @@
+<div class="col-lg-12">
+<i>Search po nazivu igrice</i>
+    <div class="row">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="name" [(ngModel)]="name">
+          <br/>
+        </div>
+      </form>
+    </div>
+</div>
+<div class="col-lg-12">
+<b>Games</b>
+<br/>
+<i>Sortira po PEGI godinama, pa u istim PEGI sortira alfabetski po žanru</i>
+</div>
+<div class="col-lg-12">
+    <div *ngFor="let game of data | SearchPipe:name | SortGenre:genre | SortPegi:pegi">
+      <br/> Game ID: {{game.id}}
+      <br/> Name: {{game.name}}
+      <br/> Genre: {{game.genre}}
+      <br/> Pegi: {{game.pegi}}
+      <br/> <br/>
+    </div>
+</div>

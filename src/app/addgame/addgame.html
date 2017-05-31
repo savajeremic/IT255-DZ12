@@ -1,0 +1,21 @@
+<form role="form" [formGroup]="addGameForm">
+  <div class="form-group">
+    <label for="gameName">Game name:</label>
+    <input type="text" class="form-control" formControlName='gameName'>
+  </div>
+  <div class="form-group">
+    <label for="gameGenre">Genre:</label>
+    <select class="form-control" ng-selected="Yes" formControlName='gameGenre'>
+      <option value="4" >first-person</option>
+      <option value="3" >action role-playing</option>
+      <option value="2" >multiplayer</option>
+      <option value="1" >strategy</option>
+      <option value="0" >platform</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="gamePegi">PEGI age restriction: </label>
+    <input type="text" class="form-control" formControlName='gamePegi'>
+  </div>
+  <button (click)="onAddGame()" class="btn btn-default">Add Game</button>
+</form>

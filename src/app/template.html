@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+  <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/">IT255</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a routerLink="/">Home</a></li>
+        <li routerLink="/aboutus" routerLinkActive="active"><a routerLink="/aboutus">About us</a></li>
+        <li *ngIf="isAuth == 'no'" routerLink="/register" routerLinkActive="active"><a routerLink="/register">Register</a></li>
+        <li *ngIf="isAuth == 'yes'" routerLink="/addgame" routerLinkActive="active"><a routerLink="/addgame">Add game</a></li>
+        <li *ngIf="isAuth == 'yes'" routerLink="/addclothing" routerLinkActive="active"><a routerLink="/addclothing">Add clothing</a></li>
+
+        <li *ngIf="isAuth == 'no'" routerLink="/login" routerLinkActive="active"><a routerLink="/login">Login</a></li>
+        <li *ngIf="isAuth == 'yes'" routerLink="/allgames" routerLinkActive="active"><a routerLink="/allgames">All games</a></li>
+        <li *ngIf="isAuth == 'yes'" ><a (click)="onLogout()">Logout</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
