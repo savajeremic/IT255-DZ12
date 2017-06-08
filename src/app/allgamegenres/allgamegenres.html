@@ -1,0 +1,19 @@
+<div class="col-lg-12">
+  <br/>Sobe<br/> <br/>
+  <table class="table-stripped table">
+    <thead>
+      <tr>
+        <th>Game Genre Name</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of data">
+        <td>{{game.name}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeGameGenre($event,game.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

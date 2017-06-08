@@ -9,10 +9,17 @@ import { routing } from './app.routing';
 import { HomePageComponent } from './home/home.component';
 import { AboutUsComponent } from './aboutus/aboutus.component';
 import { RegisterComponent } from './register/register.component';
-import { AddGameComponent } from './addgame/addgame.component';
-import { AddClothingComponent } from './addclothing/addclothing.component';
 import { LoginComponent } from './login/login.component';
+
+import { AddGameComponent } from './addgame/addgame.component';
+import { EditGameComponent } from './editgame/editgame.component';
 import { AllGamesComponent } from './allgames/allgames.component';
+import { GameComponent } from './game/game.component';
+
+import { AllGameGenresComponent } from './allgamegenres/allgamegenres.component';
+import { AddGameGenreComponent } from './addgamegenre/addgamegenre.component';
+//import { AddClothingComponent } from './addclothing/addclothing.component';
+
 import { SearchPipe } from './pipes/search';
 import { SortGenre } from './pipes/sortGenre';
 import { SortPegi } from './pipes/sortPegi';
@@ -23,10 +30,14 @@ import { SortPegi } from './pipes/sortPegi';
     HomePageComponent,
     AboutUsComponent,
     RegisterComponent,
-    AddGameComponent,
-    AddClothingComponent,
     LoginComponent,
+    AddGameComponent,
+    EditGameComponent,
     AllGamesComponent,
+    GameComponent,
+    AllGameGenresComponent,
+    AddGameGenreComponent,
+    //AddClothingComponent,
     SearchPipe,
     SortGenre,
     SortPegi

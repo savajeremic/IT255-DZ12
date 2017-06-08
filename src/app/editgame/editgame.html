@@ -1,0 +1,11 @@
+<form role="form" [formGroup]="editGameForm">
+  <div class="form-group">
+    <label for="gameName">Game name:</label>
+    <input type="text" class="form-control" formControlName='gameName'>
+  </div>
+  <div class="form-group">
+    <label for="gamePegi">PEGI age restriction: </label>
+    <input type="text" class="form-control" formControlName='gamePegi'>
+  </div>
+  <button (click)="onEditGame()" class="btn btn-default">Edit Game</button>
+</form>

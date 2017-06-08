@@ -117,12 +117,30 @@ function checkIfUserExists($username){
 	}
 }
 
-function addGame($gameName, $gameGenre, $gamePegi){
+function addGame($gameName, $gamePegi, $gameGenreID){
 	global $conn;
 	$rarray = array();
 	if(checkIfLoggedIn()){
-		$stmt = $conn->prepare("INSERT INTO game (gameName, gameGenre, gamePegi) VALUES (?, ?, ?)");
-		$stmt->bind_param("sss", $gameName, $gameGenre, $gamePegi);
+		$stmt = $conn->prepare("INSERT INTO game (gameName, gamePegi, gameGenreID) VALUES (?, ?, ?)");
+		$stmt->bind_param("ssi", $gameName, $gamePegi, $gameGenreID);
+		if($stmt->execute()){
+		$rarray['success'] = "ok";
+		}else{
+			$rarray['error'] = "Database connection error";
+		}
+	} else{
+		$rarray['error'] = "Please log in";
+		header('HTTP/1.1 401 Unauthorized');
+	}
+	return json_encode($rarray);
+}
+
+function addClothing($type, $price){
+	global $conn;
+	$rarray = array();
+	if(checkIfLoggedIn()){
+		$stmt = $conn->prepare("INSERT INTO clothing (type, price) VALUES (?, ?)");
+		$stmt->bind_param("ss", $type, $price);
 		if($stmt->execute()){
 		$rarray['success'] = "ok";
 		}else{
@@ -139,22 +157,22 @@ function getGames(){
 	global $conn;
 	$rarray = array();
 	if(checkIfLoggedIn()){
-		$result = $conn->query("SELECT * FROM game");
+		$result = $conn->query("SELECT game.id, gameName, gamePegi, (SELECT name FROM gamegenre WHERE id=game.gameGenreID) as gamegenre FROM game");
 		$num_rows = $result->num_rows;
-		$game = array();
+		$games = array();
 		if($num_rows > 0)
 		{
-			$result2 = $conn->query("SELECT * FROM game");
+			$result2 = $conn->query("SELECT game.id, gameName, gamePegi, (SELECT name FROM gamegenre WHERE id=game.gameGenreID) as gamegenre FROM game");
 			while($row = $result2->fetch_assoc()) {
 				$one_game = array();
 				$one_game['id'] = $row['id'];
 				$one_game['gameName'] = $row['gameName'];
-				$one_game['gameGenre'] = $row['gameGenre'];
 				$one_game['gamePegi'] = $row['gamePegi'];
-				array_push($game, $one_game);
+				$one_game['gamegenre'] = $row['gamegenre'];
+				array_push($games, $one_game);
 			}
 		}
-		$rarray['game'] = $game;
+		$rarray['games'] = $games;
 		return json_encode($rarray);
 	} else{
 		$rarray['error'] = "Please log in";
@@ -162,4 +180,125 @@ function getGames(){
 		return json_encode($rarray);
 	}
 }
+
+function getGame($id){
+	global $conn;
+	$rarray = array();
+	if(checkIfLoggedIn()){
+		$result = $conn->query("SELECT game.id, gameName, gamePegi, (SELECT name FROM gamegenre WHERE id=game.gameGenreID) as gamegenre FROM game WHERE id=".$id);
+		$num_rows = $result->num_rows;
+		$games = array();
+		if($num_rows > 0)
+		{
+			$result2 = $conn->query("SELECT game.id ,gameName, gamePegi, (SELECT name FROM gamegenre WHERE id=game.gameGenreID) as gamegenre FROM game WHERE id=".$id);
+			while($row = $result2->fetch_assoc()) {
+				$one_game = array();
+				$one_game['id'] = $row['id'];
+				$one_game['gameName'] = $row['gameName'];
+				$one_game['gamePegi'] = $row['gamePegi'];
+				$one_game['gamegenre'] = $row['gamegenre'];
+				$games = $one_game;
+			}
+		}
+		$rarray['data'] = $games;
+		return json_encode($rarray);
+	} else{
+		$rarray['error'] = "Please log in";
+		header('HTTP/1.1 401 Unauthorized');
+		return json_encode($rarray);
+	}
+}
+
+function editGame($gameName, $gamePegi, $id){
+    global $conn;
+    $rarray = array();
+    if(checkIfLoggedIn()){
+		$stmt = $conn->prepare("UPDATE game SET gameName=?, gamePegi=? WHERE id=?");
+		$stmt->bind_param("ssi", $gameName, $gamePegi, $id);
+        if($stmt->execute()){
+            $rarray['success'] = "ok";
+        }else{
+            $rarray['error'] = "Database connection error";
+        }
+    } else{
+        $rarray['error'] = "Please log in";
+        header('HTTP/1.1 401 Unauthorized');
+    }
+    return json_encode($rarray);
+}
+
+function deleteGame($id){
+	global $conn;
+	$rarray = array();
+	if(checkIfLoggedIn()){
+		$result = $conn->prepare("DELETE FROM game WHERE id=?");
+		$result->bind_param("i", $id);
+		$result->execute();
+		$rarray['success'] = "Deleted successfully";
+	} else{
+		$rarray['error'] = "Please log in";
+		header('HTTP/1.1 401 Unauthorized');
+	}
+	return json_encode($rarray);
+}
+
+function addGameGenre($name){
+	global $conn;
+	$rarray = array();
+	if(checkIfLoggedIn()){
+		$stmt = $conn->prepare("INSERT INTO gamegenre (name) VALUES (?)");
+		$stmt->bind_param("s", $name);
+		if($stmt->execute()){
+			$rarray['success'] = "ok";
+		}else{
+			$rarray['error'] = "Database connection error";
+		}
+	} else{
+		$rarray['error'] = "Please log in";
+		header('HTTP/1.1 401 Unauthorized');
+	}
+	return json_encode($rarray);
+}
+
+function getGameGenres(){
+	global $conn;
+	$rarray = array();
+	if(checkIfLoggedIn()){
+		$result = $conn->query("SELECT * FROM gamegenre");
+		$num_rows = $result->num_rows;
+		$gamegenres = array();
+		if($num_rows > 0)
+		{
+			$result2 = $conn->query("SELECT * FROM gamegenre");
+			while($row = $result2->fetch_assoc()) {
+				$one_room = array();
+				$one_room['id'] = $row['id'];
+				$one_room['name'] = $row['name'];
+				array_push($gamegenres,$one_room);
+			}
+		}
+		$rarray['gamegenres'] = $gamegenres;
+		return json_encode($rarray);
+	} else{
+		$rarray['error'] = "Please log in";
+		header('HTTP/1.1 401 Unauthorized');
+		return json_encode($rarray);
+	}
+}
+
+function deleteGameGenre($id){
+	global $conn;
+	$rarray = array();
+	if(checkIfLoggedIn()){
+		$result = $conn->prepare("DELETE FROM gamegenre WHERE id=?");
+		$result->bind_param("i",$id);
+		$result->execute();
+		$rarray['success'] = "Deleted successfully";
+	} else{
+		$rarray['error'] = "Please log in";
+		header('HTTP/1.1 401 Unauthorized');
+	}
+	return json_encode($rarray);
+}
+
 ?>

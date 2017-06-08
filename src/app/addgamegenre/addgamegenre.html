@@ -1,0 +1,7 @@
+<form role="form" [formGroup]="addGameGenreForm">
+  <div class="form-group">
+    <label for="name">Game genre name:</label>
+    <input type="text" class="form-control" formControlName='name'>
+  </div>
+  <button (click)="onAddGameGenre()" class="btn btn-default">AddGameGenre</button>
+</form>

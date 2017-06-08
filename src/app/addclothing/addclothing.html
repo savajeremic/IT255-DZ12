@@ -1,0 +1,17 @@
+<form role="form" [formGroup]="addClothingForm">
+  <div class="form-group">
+    <label for="type">Type:</label>
+    <select class="form-control" ng-selected="Yes" formControlName='type'>
+      <option value="4" >T-Shirt</option>
+      <option value="3" >Jacket</option>
+      <option value="2" >Boots</option>
+      <option value="1" >Jeans</option>
+      <option value="0" >Socks</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="price">Price $:</label>
+    <input type="text" class="form-control" formControlName='price'>
+  </div>
+  <button (click)="onAddClothing()" class="btn btn-default">Add Clothing</button>
+</form>

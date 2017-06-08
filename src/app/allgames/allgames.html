@@ -1,0 +1,28 @@
+<div class="col-lg-12">
+  <br/>Games<br/> <br/>
+    <table class="table-stripped table">
+    <thead>
+      <tr>
+        <th>Game Name</th>
+        <th>Game Pegi</th>
+        <th>Game Genre</th>
+        <th>Delete</th>
+        <th>View</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of data">
+        <td>{{game.gameName}}</td>
+        <td>{{game.gamePegi}}</td>
+        <td>{{game.gamegenre}}</td>
+        <td>
+        <button class="btn btn-danger" (click)="removeGame($event,game.id)">Delete</button>
+        </td>
+        <td>
+        <button class="btn btn-default"(click)="viewGame(game.id)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

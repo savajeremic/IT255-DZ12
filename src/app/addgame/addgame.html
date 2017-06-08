@@ -4,13 +4,10 @@
     <input type="text" class="form-control" formControlName='gameName'>
   </div>
   <div class="form-group">
-    <label for="gameGenre">Genre:</label>
-    <select class="form-control" ng-selected="Yes" formControlName='gameGenre'>
-      <option value="4" >first-person</option>
-      <option value="3" >action role-playing</option>
-      <option value="2" >multiplayer</option>
-      <option value="1" >strategy</option>
-      <option value="0" >platform</option>
+    <label for="gamegenre">Genre:</label>
+    <select formControlName='gamegenre' class="form-control" ng-selected="Yes" >
+      <option value="" selected>Select game genre</option>
+      <option *ngFor="let gamegenre of gamegenres" [value]="gamegenre.id">{{gamegenre.name}}</option>
     </select>
   </div>
   <div class="form-group">
