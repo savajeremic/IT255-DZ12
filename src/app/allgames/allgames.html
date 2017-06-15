@@ -17,10 +17,13 @@
         <td>{{game.gamePegi}}</td>
         <td>{{game.gamegenre}}</td>
         <td>
-        <button class="btn btn-danger" (click)="removeGame($event,game.id)">Delete</button>
+          <button class="btn btn-danger" (click)="removeGame($event,game.id)">Delete</button>
         </td>
         <td>
-        <button class="btn btn-default"(click)="viewGame(game.id)">View</button>
+          <button class="btn btn-default" (click)="viewGame(game.id)">View</button>
+        </td>
+        <td>
+          <button class="btn btn-warning" (click)="editGame(game.id)">Edit</button>
         </td>
       </tr>
     </tbody>

@@ -209,12 +209,12 @@ function getGame($id){
 	}
 }
 
-function editGame($gameName, $gamePegi, $id){
+function editGame($id, $gameName, $gamePegi, $gameGenreID){
     global $conn;
     $rarray = array();
     if(checkIfLoggedIn()){
-		$stmt = $conn->prepare("UPDATE game SET gameName=?, gamePegi=? WHERE id=?");
-		$stmt->bind_param("ssi", $gameName, $gamePegi, $id);
+		$stmt = $conn->prepare("UPDATE game SET gameName=?, gamePegi=?, gameGenreID=? WHERE id=?");
+		$stmt->bind_param("ssii", $gameName, $gamePegi, $gameGenreID, $id);
         if($stmt->execute()){
             $rarray['success'] = "ok";
         }else{

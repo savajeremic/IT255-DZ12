@@ -19,15 +19,15 @@
         <li *ngIf="isAuth == 'no'" routerLink="/login" routerLinkActive="active"><a routerLink="/login">Login</a></li>
 
         <li *ngIf="isAuth == 'yes'" routerLink="/addgame" routerLinkActive="active"><a routerLink="/addgame">Add Game</a></li>
-        <li *ngIf="isAuth == 'yes'" routerLink="/editgame" routerLinkActive="active"><a routerLink="/editgame">Edit Game</a></li>
         <li *ngIf="isAuth == 'yes'" routerLink="/allgames" routerLinkActive="active"><a routerLink="/allgames">All Games</a></li>
-
-        <!--<li *ngIf="isAuth == 'yes'" routerLink="/addclothing" routerLinkActive="active"><a routerLink="/addclothing">Add clothing</a></li>-->
 
         <li *ngIf="isAuth == 'yes'" routerLink="/addgamegenre" routerLinkActive="active"><a routerLink="/addgamegenre">Add Game Genre</a></li>
         <li *ngIf="isAuth == 'yes'" routerLink="/allgamegenres" routerLinkActive="active"><a routerLink="/allgamegenres">All Game Genres</a></li>
 
-        <li *ngIf="isAuth == 'yes'" routerLink="/game" routerLinkActive="active"><a routerLink="/game">Game</a></li>
+        <!--<li *ngIf="isAuth == 'yes'" routerLink="/addclothing" routerLinkActive="active"><a routerLink="/addclothing">Add clothing</a></li>-->
+
+        <!--<li *ngIf="isAuth == 'yes'" routerLink="/editgame" routerLinkActive="active"><a routerLink="/editgame">Edit Game</a></li>-->
+        <!--<li *ngIf="isAuth == 'yes'" routerLink="/game" routerLinkActive="active"><a routerLink="/game">Game</a></li>-->
         <li *ngIf="isAuth == 'yes'" ><a (click)="onLogout()">Logout</a></li>
       </ul>
     </div>

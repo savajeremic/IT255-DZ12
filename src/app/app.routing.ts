@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: 'addgame', component: AddGameComponent},
-  { path: 'editgame', component: EditGameComponent},
+  { path: 'editGame/:id', component: EditGameComponent},
   { path: 'allgames', component: AllGamesComponent},
   { path: 'addgamegenre', component: AddGameGenreComponent},
   { path: 'allgamegenres', component: AllGameGenresComponent},

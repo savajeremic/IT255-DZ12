@@ -43,7 +43,7 @@ export class AllGamesComponent {
     this.router.navigate(['/game', item]);
   }
 
-  public editGame(item: Number){
-    this.router.navigate(['/editgame', item]);
-  }
+  public editGame(id:number){
+      this.router.navigateByUrl('editGame/' + id);
+    }
 }
